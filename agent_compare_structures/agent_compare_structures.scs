@@ -1,0 +1,213 @@
+agent_compare_structures
+=> nrel_main_idtf:
+	[Агентная scp-программа сравнения структур] (* <- lang_ru;; *);
+	[Agent scp-program of comparing structures] (* <- lang_en;; *);
+<- scp_program;
+<- agent_scp_program;
+-> rrel_key_sc_element: .._process1;;
+
+agent_compare_structures = [*
+.._process1
+_<- scp_process;
+
+_-> rrel_1:: rrel_in:: _graph1;
+_-> rrel_2:: rrel_in:: _graph2;
+_-> rrel_3:: rrel_out:: _compare_result;
+_<= nrel_decomposition_of_action:: .._actions (*
+	_-> rrel_1:: .._agent_compare_structures_operator0 (*
+	
+	_<- genEl;;
+		_-> rrel_1:: rrel_assign:: rrel_node:: rrel_scp_var:: rrel_struct:: rrel_const::_compare_result;;
+
+		_=> nrel_goto:: ...._agent_compare_structures_operator0_1;;
+	*);;
+	
+	_-> .._agent_compare_structures_operator0_1 (*
+	
+	_<- genElStr3;;
+		_-> rrel_1:: rrel_fixed::_compare_result;;
+		_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _per1;;
+		_-> rrel_1:: rrel_assign:: rrel_node:: rrel_scp_var:: rrel_struct:: rrel_const::reverse_differance;;
+		
+		_=> nrel_goto:: ...._agent_compare_structures_operator0_2;;
+		
+	*);;
+	
+	_-> .._agent_compare_structures_operator0_2 (*
+	
+	_<- genElStr3;;
+		_-> rrel_1:: rrel_fixed::_compare_result;;
+		_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _per2;;
+		_-> rrel_1:: rrel_assign:: rrel_node:: rrel_scp_var:: rrel_struct:: rrel_const::forward_differance;;
+		
+		_=> nrel_goto:: ....agent_compare_structures_operator1 ;;
+		
+	*);;
+	
+	_->agent_compare_structures_operator1 (*
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph1;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_node:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: _all_graph1_vertex;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_return_no_vertex1;;
+		_=> nrel_then:: .._agent_compare_structures_operator2;;
+
+	*);;
+	
+	_->agent_compare_structures_operator2 (*
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph1;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_arc:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: _all_graph1_arc;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator3;;
+
+	*);;
+	
+	
+	_->agent_compare_structures_operator3 (*
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph2;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_node:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: _all_graph2_vertex;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_return_no_vertex2;;
+		_=> nrel_then:: .._agent_compare_structures_operator4;;
+
+	*);;
+	
+	_->agent_compare_structures_operator4 (*
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph2;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_arc:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: _all_graph2_arc;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator5;;
+
+	*);;
+	
+	_->agent_compare_structures_operator5 (*
+		_<- searchStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _all_graph1_vertex;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_node:: rrel_scp_var:: _el;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_6;;
+		_=> nrel_then:: .._agent_compare_structures_operator5_1;;
+
+	*);;
+	
+	
+	_->agent_compare_structures_operator5_1 (*
+		
+		_<- eraseStr3;;
+			_-> rrel_1:: rrel_erase:: rrel_fixed:: _arc;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator5_2;;
+			
+	*);;
+	
+	_->agent_compare_structures_operator5_2 (*
+		_<- searchStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph_2;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_fixed:: _el;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_5_3;;
+		_=> nrel_then:: .._agent_compare_structures_operator5;;
+
+	*);;
+	
+	_->agent_compare_structures_operator5_3 (*
+		_<- genStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: reverse_differance;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_fixed:: _el;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator5;;
+
+	*);;
+	
+	_->agent_compare_structures_operator6 (*
+		_<- searchStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _all_graph2_vertex;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_node:: rrel_scp_var:: _el;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_7;;
+		_=> nrel_then:: .._agent_compare_structures_operator6_1;;
+
+	*);;
+	
+	
+	_->agent_compare_structures_operator6_1 (*
+		
+		_<- eraseStr3;;
+			_-> rrel_1:: rrel_erase:: rrel_fixed:: _arc;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator6_2;;
+			
+	*);;
+	
+	_->agent_compare_structures_operator6_2 (*
+		_<- searchStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph_1;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_fixed:: _el;;
+			
+		_=> nrel_else:: .._agent_compare_structures_operator_6_3;;
+		_=> nrel_then:: .._agent_compare_structures_operator6;;
+
+	*);;
+	
+	_->agent_compare_structures_operator6_3 (*
+		_<- genStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: forward_differance;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_fixed:: _el;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator6;;
+
+	*);;
+	
+	_-> .._agent_compare_structures_operator_return_no_vertex1 (*
+	
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph2;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: forward_differance;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator_return_end;;
+		
+	*);;
+	
+	_-> .._agent_compare_structures_operator_return_no_vertex2 (*
+	
+		_<- searchSetStr3;;
+			_-> rrel_1:: rrel_fixed:: rrel_scp_const:: _graph1;;
+			_-> rrel_2:: rrel_assign:: rrel_pos_const_perm:: rrel_scp_var:: _arc;;
+			_-> rrel_3:: rrel_assign:: rrel_scp_var:: _el;;
+			_-> rrel_assign:: rrel_scp_var:: rrel_set_3:: reverse_differance;;
+			
+		_=> nrel_goto:: .._agent_compare_structures_operator_return_end;;
+		
+	*);;
+
+
+	
+	_-> .._agent_compare_structures_operator_return_end (*
+	
+		_<- return;;
+		
+	*);;
+	
+
+*);;
+*];;
+		
