@@ -14,7 +14,15 @@ _-> rrel_2:: rrel_in:: _graph2;
 _-> rrel_3:: rrel_out:: _compare_result;
 _<= nrel_decomposition_of_action:: .._actions (*
 
-	_-> rrel_1:: .._proc_compare_structures_operator0_1 (*
+	_-> rrel_1:: .._proc_compare_structures_operator0 (*
+	
+	_<- genEl;;
+		_-> rrel_1:: rrel_assign:: rrel_node:: rrel_scp_var:: rrel_struct:: rrel_const::_compare_result;;
+
+		_=> nrel_goto:: .._agent_compare_structures_operator0_1;;
+	*);;
+	
+	 _->.._proc_compare_structures_operator0_1 (*
 	
 	_<- genElStr3;;
 		_-> rrel_1:: rrel_fixed::_compare_result;;
