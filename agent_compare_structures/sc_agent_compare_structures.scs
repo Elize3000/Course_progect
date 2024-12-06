@@ -14,7 +14,6 @@ sc_agent_compare_structures
 <= nrel_sc_agent_key_sc_elements:
 	{
 		action_initiated;
-		action;
 		action_compare_structures
 	};
 <- key_sc_element:
@@ -34,7 +33,8 @@ sc_agent_compare_structures
 		<- platform_independent_abstract_sc_agent;;
 		<= nrel_sc_agent_program: 
 		{
-			agent_compare_structures
+			agent_compare_structures;
+			proc_compare_structures
 		};;
 		-> sc_agent_compare_structures_scp (* <- active_sc_agent;; *);;
 	*);;
@@ -50,10 +50,5 @@ sc_agent_compare_structures
 
 ..sc_agent_compare_structures_result
 = [*
-	action_compare_structures _-> .._action;;
-	action_finished _-> .._action;;
-	action _-> .._action;;
-	/*.._action _=> nrel_result:: .._result;;*/
-	.._action _-> rrel_1:: .._parameter1;;
-	.._action _-> rrel_2:: .._parameter2;;
-*];;                   
+    .._action _=> nrel_result:: .._result;;
+*];;                  
